@@ -1,0 +1,60 @@
+<div class="container" *ngIf="rates">
+  <h1>Currency Converter</h1>
+  <div id="logo">
+    <img src="/assets/image/currencies2.png" class="img" align = "left">
+    <div class="topleft"></div>
+  </div>
+  <br />
+  <br />
+  <input type="file" id="input" (change)="excelRead($event)" />
+
+  <label><b>Select a currency to convert:</b></label>
+  <select [(ngModel)]="destCurrency" (change)="convertCurrency()">
+    <option value="asd" selected>--Select--</option>
+    <option *ngFor="let c of getAllCurrenciesList()" [value]="c">
+      {{ c }}
+    </option>
+  </select>
+  <br>
+  <br>
+
+  <button type="button" (click)="clearData()" class = "button">Clear</button>
+
+  <br />
+</div>
+<br />
+<br />
+<table
+  align="center"
+  class="minimalistBlack"
+  *ngIf="currencyRecords.length > 0"
+>
+  <thead>
+    <tr>
+      <th>SNo</th>
+      <th>Name</th>
+      <th>Currency</th>
+      <th>Amount</th>
+      <th>Converted Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of currencyRecords; let index1 = index">
+      <td>
+        <span>{{ index1 + 1 }}</span>
+      </td>
+      <td>
+        <span>{{ i.name }}</span>
+      </td>
+      <td>
+        <span>{{ i.currency }}</span>
+      </td>
+      <td>
+        <span>{{ i.amount }}</span>
+      </td>
+      <td>
+        <span>{{ i.convertedamount }}</span>
+      </td>
+    </tr>
+  </tbody>
+</table>
